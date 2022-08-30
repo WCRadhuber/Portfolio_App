@@ -1,0 +1,22 @@
+version: "3"
+services:
+  flask:
+    build: .
+    container_name: flaskapp
+    ports:
+      - "8000:8000"
+  nginx:
+    build: ./nginx
+    environment:
+      - SERVER_NAME=(insert ipv4 address)
+    restart: always
+    ports:
+      - "80:80"
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+      MYSQL_DATABASE: user_notes
+    volumes:
+      - ./dbdata:/var/lib/mysql
