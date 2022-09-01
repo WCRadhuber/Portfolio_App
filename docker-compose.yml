@@ -8,7 +8,7 @@ services:
   nginx:
     build: ./nginx
     environment:
-      - SERVER_NAME=(insert ipv4 address)
+      - SERVER_NAME=18.212.33.66
     restart: always
     ports:
       - "80:80"
@@ -19,4 +19,5 @@ services:
       MYSQL_ROOT_PASSWORD: password123
       MYSQL_DATABASE: user_notes
     volumes:
+      - ./dbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./dbdata:/var/lib/mysql
